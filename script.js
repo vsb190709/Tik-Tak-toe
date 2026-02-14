@@ -1,13 +1,9 @@
-const cells = document.querySelectorAll(".cell");
+const boardElement = document.getElementById("board");
 const statusText = document.getElementById("status");
-const scoreX = document.getElementById("scoreX");
-const scoreO = document.getElementById("scoreO");
 
 let currentPlayer = "X";
-let board = ["", "", "", "", "", "", "", "", ""];
+let board = Array(9).fill("");
 let running = true;
-let xScore = 0;
-let oScore = 0;
 
 const winConditions = [
     [0,1,2],
@@ -20,12 +16,16 @@ const winConditions = [
     [2,4,6]
 ];
 
-cells.forEach((cell, index) => {
-    cell.addEventListener("click", () => cellClick(cell, index));
-});
+// Create board dynamically
+for (let i = 0; i < 9; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.addEventListener("click", () => handleClick(cell, i));
+    boardElement.appendChild(cell);
+}
 
-function cellClick(cell, index) {
-    if(board[index] !== "" || !running) return;
+function handleClick(cell, index) {
+    if (board[index] !== "" || !running) return;
 
     board[index] = currentPlayer;
     cell.textContent = currentPlayer;
@@ -34,31 +34,18 @@ function cellClick(cell, index) {
 }
 
 function checkWinner() {
-    let roundWon = false;
+    for (let condition of winConditions) {
+        const [a,b,c] = condition;
 
-    for(let condition of winConditions) {
-        const [a, b, c] = condition;
-
-        if(board[a] && board[a] === board[b] && board[b] === board[c]) {
-            roundWon = true;
-            break;
+        if (board[a] && board[a] === board[b] && board[b] === board[c]) {
+            highlightWin(condition);
+            statusText.textContent = `Player ${currentPlayer} Wins!`;
+            running = false;
+            return;
         }
     }
 
-    if(roundWon) {
-        statusText.textContent = `Player ${currentPlayer} Wins!`;
-        if(currentPlayer === "X") {
-            xScore++;
-            scoreX.textContent = xScore;
-        } else {
-            oScore++;
-            scoreO.textContent = oScore;
-        }
-        running = false;
-        return;
-    }
-
-    if(!board.includes("")) {
+    if (!board.includes("")) {
         statusText.textContent = "It's a Draw!";
         running = false;
         return;
@@ -68,10 +55,19 @@ function checkWinner() {
     statusText.textContent = `Player ${currentPlayer}'s Turn`;
 }
 
+function highlightWin(cells) {
+    cells.forEach(index => {
+        document.querySelectorAll(".cell")[index].classList.add("win");
+    });
+}
+
 function restartGame() {
-    board = ["", "", "", "", "", "", "", "", ""];
+    board = Array(9).fill("");
     running = true;
     currentPlayer = "X";
     statusText.textContent = "Player X's Turn";
-    cells.forEach(cell => cell.textContent = "");
+    document.querySelectorAll(".cell").forEach(cell => {
+        cell.textContent = "";
+        cell.classList.remove("win");
+    });
 }
