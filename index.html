@@ -1,293 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ToolBox – Free Online Calculators</title>
 
-<title>ToolBox – Free Online Calculators & Converters</title>
-<meta name="description" content="Free online tools including percentage calculator, age calculator, BMI calculator, converters and more.">
+<link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-
-*{box-sizing:border-box}
-
-body{
-font-family:Inter,Arial;
-margin:0;
-background:#f5f7fb;
-color:#222;
-}
-
-header{
-background:#1f2937;
-color:white;
-padding:20px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-header h1{
-font-size:20px;
-margin:0;
-}
-
-nav a{
-color:#ddd;
-margin-left:20px;
-text-decoration:none;
-font-size:14px;
-}
-
-nav a:hover{color:white}
-
-.hero{
-padding:60px 20px;
-text-align:center;
-}
-
-.hero h2{
-font-size:36px;
-margin-bottom:10px;
-}
-
-.hero p{
-color:#555;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
-}
-
-.tool{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 4px 14px rgba(0,0,0,0.06);
-}
-
-.tool h3{
-margin-top:0;
-font-size:18px;
-}
-
-input{
-width:100%;
-padding:10px;
-margin-top:6px;
-margin-bottom:10px;
-border:1px solid #ddd;
-border-radius:6px;
-}
-
-button{
-background:#2563eb;
-border:none;
-color:white;
-padding:10px;
-border-radius:6px;
-cursor:pointer;
-width:100%;
-}
-
-button:hover{
-background:#1d4ed8;
-}
-
-.result{
-margin-top:10px;
-font-weight:600;
-}
-
-footer{
-text-align:center;
-padding:30px;
-color:#666;
-font-size:14px;
-}
-
-</style>
 </head>
 
 <body>
 
 <header>
-<h1>ToolBox</h1>
+
+<h2>ToolBox</h2>
+
 <nav>
-<a href="#tools">Tools</a>
-<a href="#">About</a>
+<a href="/">Home</a>
+<a href="/age">Age Calculator</a>
+<a href="/bmi">BMI Calculator</a>
 </nav>
+
 </header>
 
-<section class="hero">
-<h2>Free Online Calculators</h2>
-<p>Simple tools for students, developers and everyday calculations</p>
-</section>
+<div class="container">
 
-<div class="container" id="tools">
+<div class="card">
 
-<div class="grid">
+<h1>Free Online Tools</h1>
 
-<!-- Percentage -->
-<div class="tool">
-<h3>Percentage Calculator</h3>
-<input id="p" placeholder="Percent">
-<input id="n" placeholder="Number">
-<button onclick="percent()">Calculate</button>
-<div class="result" id="r1"></div>
-</div>
+<p>Select a tool below.</p>
 
-<!-- Age -->
-<div class="tool">
-<h3>Age Calculator</h3>
-<input type="date" id="birth">
-<button onclick="age()">Calculate</button>
-<div class="result" id="r2"></div>
-</div>
+<ul>
 
-<!-- BMI -->
-<div class="tool">
-<h3>BMI Calculator</h3>
-<input id="w" placeholder="Weight kg">
-<input id="h" placeholder="Height meters">
-<button onclick="bmi()">Calculate</button>
-<div class="result" id="r3"></div>
-</div>
+<li><a href="/age">Age Calculator</a></li>
 
-<!-- Discount -->
-<div class="tool">
-<h3>Discount Calculator</h3>
-<input id="price" placeholder="Original Price">
-<input id="disc" placeholder="Discount %">
-<button onclick="discount()">Calculate</button>
-<div class="result" id="r4"></div>
-</div>
+<li><a href="/bmi">BMI Calculator</a></li>
 
-<!-- Interest -->
-<div class="tool">
-<h3>Simple Interest</h3>
-<input id="sp" placeholder="Principal">
-<input id="sr" placeholder="Rate %">
-<input id="st" placeholder="Time years">
-<button onclick="si()">Calculate</button>
-<div class="result" id="r5"></div>
-</div>
+</ul>
 
-<!-- Temperature -->
-<div class="tool">
-<h3>Celsius → Fahrenheit</h3>
-<input id="c">
-<button onclick="temp()">Convert</button>
-<div class="result" id="r6"></div>
-</div>
-
-<!-- CM -->
-<div class="tool">
-<h3>CM → Inch</h3>
-<input id="cm">
-<button onclick="cm()">Convert</button>
-<div class="result" id="r7"></div>
-</div>
-
-<!-- Binary -->
-<div class="tool">
-<h3>Binary → Decimal</h3>
-<input id="bin">
-<button onclick="binary()">Convert</button>
-<div class="result" id="r8"></div>
-</div>
-
-<!-- Square -->
-<div class="tool">
-<h3>Square Calculator</h3>
-<input id="sq">
-<button onclick="square()">Calculate</button>
-<div class="result" id="r9"></div>
-</div>
-
-<!-- Random -->
-<div class="tool">
-<h3>Random Number Generator</h3>
-<button onclick="rand()">Generate</button>
-<div class="result" id="r10"></div>
 </div>
 
 </div>
-</div>
-
-<footer>
-© 2026 ToolBox – Free Online Tools
-</footer>
-
-<script>
-
-function percent(){
-let p=document.getElementById("p").value
-let n=document.getElementById("n").value
-document.getElementById("r1").innerText=(p/100)*n
-}
-
-function age(){
-let b=new Date(document.getElementById("birth").value)
-let t=new Date()
-document.getElementById("r2").innerText=t.getFullYear()-b.getFullYear()+" years"
-}
-
-function bmi(){
-let w=document.getElementById("w").value
-let h=document.getElementById("h").value
-document.getElementById("r3").innerText=(w/(h*h)).toFixed(2)
-}
-
-function discount(){
-let p=document.getElementById("price").value
-let d=document.getElementById("disc").value
-document.getElementById("r4").innerText=p-(p*d/100)
-}
-
-function si(){
-let p=document.getElementById("sp").value
-let r=document.getElementById("sr").value
-let t=document.getElementById("st").value
-document.getElementById("r5").innerText=(p*r*t)/100
-}
-
-function temp(){
-let c=document.getElementById("c").value
-document.getElementById("r6").innerText=(c*9/5)+32+" °F"
-}
-
-function cm(){
-let c=document.getElementById("cm").value
-document.getElementById("r7").innerText=c/2.54+" inch"
-}
-
-function binary(){
-let b=document.getElementById("bin").value
-document.getElementById("r8").innerText=parseInt(b,2)
-}
-
-function square(){
-let s=document.getElementById("sq").value
-document.getElementById("r9").innerText=s*s
-}
-
-function rand(){
-document.getElementById("r10").innerText=Math.floor(Math.random()*100)
-}
-
-</script>
 
 </body>
+
 </html>
