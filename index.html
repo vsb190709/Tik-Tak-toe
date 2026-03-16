@@ -1,23 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<title>Student Tools Hub - Free Online Calculators</title>
+
+<meta name="description" content="Free online calculators including percentage, BMI, age calculator, converters and more.">
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:0;
+padding:0;
+}
+
+header{
+background:#2a7cff;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.tool{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+input{
+padding:8px;
+margin:5px;
+}
+
+button{
+padding:8px 14px;
+background:#2a7cff;
+color:white;
+border:none;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1b5fcc;
+}
+
+.result{
+font-weight:bold;
+margin-top:10px;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="game">
-    <h1>Tic Tac Toe</h1>
-    <div class="status" id="status">Player X's Turn</div>
+<header>
+<h1>Student Tools Hub</h1>
+<p>10 Free Online Calculators</p>
+</header>
 
-    <div class="board" id="board"></div>
+<div class="container">
 
-    <div class="controls">
-        <button onclick="restartGame()">Restart</button>
-    </div>
+<!-- Percentage -->
+<div class="tool">
+<h3>Percentage Calculator</h3>
+<input id="p1" placeholder="Percent">
+<input id="n1" placeholder="Number">
+<button onclick="percent()">Calculate</button>
+<div class="result" id="r1"></div>
 </div>
 
-<script src="script.js"></script>
+<!-- Age -->
+<div class="tool">
+<h3>Age Calculator</h3>
+<input id="birth" type="date">
+<button onclick="age()">Calculate</button>
+<div class="result" id="r2"></div>
+</div>
+
+<!-- BMI -->
+<div class="tool">
+<h3>BMI Calculator</h3>
+<input id="weight" placeholder="Weight kg">
+<input id="height" placeholder="Height meters">
+<button onclick="bmi()">Calculate</button>
+<div class="result" id="r3"></div>
+</div>
+
+<!-- Simple Interest -->
+<div class="tool">
+<h3>Simple Interest</h3>
+<input id="p" placeholder="Principal">
+<input id="r" placeholder="Rate %">
+<input id="t" placeholder="Time years">
+<button onclick="si()">Calculate</button>
+<div class="result" id="r4"></div>
+</div>
+
+<!-- Discount -->
+<div class="tool">
+<h3>Discount Calculator</h3>
+<input id="price" placeholder="Original Price">
+<input id="disc" placeholder="Discount %">
+<button onclick="discount()">Calculate</button>
+<div class="result" id="r5"></div>
+</div>
+
+<!-- cm to inch -->
+<div class="tool">
+<h3>CM to Inch Converter</h3>
+<input id="cm">
+<button onclick="cm()">Convert</button>
+<div class="result" id="r6"></div>
+</div>
+
+<!-- Temperature -->
+<div class="tool">
+<h3>Celsius to Fahrenheit</h3>
+<input id="c">
+<button onclick="temp()">Convert</button>
+<div class="result" id="r7"></div>
+</div>
+
+<!-- Binary -->
+<div class="tool">
+<h3>Binary to Decimal</h3>
+<input id="bin">
+<button onclick="binary()">Convert</button>
+<div class="result" id="r8"></div>
+</div>
+
+<!-- Square -->
+<div class="tool">
+<h3>Square Calculator</h3>
+<input id="sq">
+<button onclick="square()">Calculate</button>
+<div class="result" id="r9"></div>
+</div>
+
+<!-- Random -->
+<div class="tool">
+<h3>Random Number Generator</h3>
+<button onclick="rand()">Generate</button>
+<div class="result" id="r10"></div>
+</div>
+
+</div>
+
+<script>
+
+function percent(){
+let p=document.getElementById("p1").value
+let n=document.getElementById("n1").value
+document.getElementById("r1").innerHTML=(p/100)*n
+}
+
+function age(){
+let b=new Date(document.getElementById("birth").value)
+let t=new Date()
+let a=t.getFullYear()-b.getFullYear()
+document.getElementById("r2").innerHTML="Age: "+a
+}
+
+function bmi(){
+let w=document.getElementById("weight").value
+let h=document.getElementById("height").value
+document.getElementById("r3").innerHTML=w/(h*h)
+}
+
+function si(){
+let p=document.getElementById("p").value
+let r=document.getElementById("r").value
+let t=document.getElementById("t").value
+document.getElementById("r4").innerHTML=(p*r*t)/100
+}
+
+function discount(){
+let price=document.getElementById("price").value
+let d=document.getElementById("disc").value
+document.getElementById("r5").innerHTML=price-(price*d/100)
+}
+
+function cm(){
+let c=document.getElementById("cm").value
+document.getElementById("r6").innerHTML=c/2.54+" inch"
+}
+
+function temp(){
+let c=document.getElementById("c").value
+document.getElementById("r7").innerHTML=(c*9/5)+32+" °F"
+}
+
+function binary(){
+let b=document.getElementById("bin").value
+document.getElementById("r8").innerHTML=parseInt(b,2)
+}
+
+function square(){
+let s=document.getElementById("sq").value
+document.getElementById("r9").innerHTML=s*s
+}
+
+function rand(){
+document.getElementById("r10").innerHTML=Math.floor(Math.random()*100)
+}
+
+</script>
+
 </body>
 </html>
