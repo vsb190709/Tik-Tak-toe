@@ -1,75 +1,66 @@
-* {
-    box-sizing: border-box;
+body{
+font-family:Inter,Arial;
+margin:0;
+background:#f5f7fb;
+color:#222;
 }
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1f1c2c, #928dab);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: white;
+header{
+background:#111827;
+color:white;
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.game {
-    backdrop-filter: blur(15px);
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+nav a{
+color:#ddd;
+margin-left:20px;
+text-decoration:none;
 }
 
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 90px);
-    gap: 15px;
-    margin: 25px 0;
+nav a:hover{
+color:white;
 }
 
-.cell {
-    width: 90px;
-    height: 90px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 15px;
-    font-size: 2.5rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s;
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
 }
 
-.cell:hover {
-    background: rgba(255,255,255,0.25);
-    transform: scale(1.05);
+.card{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
 }
 
-.win {
-    background: #00ffae !important;
-    color: black;
-    animation: pop 0.4s ease;
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:6px;
 }
 
-button {
-    padding: 10px 25px;
-    border: none;
-    border-radius: 10px;
-    background: #00ffae;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px;
+border-radius:6px;
+cursor:pointer;
+width:100%;
 }
 
-button:hover {
-    transform: scale(1.1);
+button:hover{
+background:#1d4ed8;
 }
 
-@keyframes pop {
-    0% { transform: scale(0.8); }
-    100% { transform: scale(1); }
+.result{
+margin-top:15px;
+font-weight:bold;
+font-size:18px;
 }
