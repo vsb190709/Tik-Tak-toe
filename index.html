@@ -1,85 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Student Tools Hub - Free Online Calculators</title>
+<title>ToolBox – Free Online Calculators & Converters</title>
+<meta name="description" content="Free online tools including percentage calculator, age calculator, BMI calculator, converters and more.">
 
-<meta name="description" content="Free online calculators including percentage, BMI, age calculator, converters and more.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
+*{box-sizing:border-box}
+
 body{
-font-family:Arial;
-background:#f4f6f8;
+font-family:Inter,Arial;
 margin:0;
-padding:0;
+background:#f5f7fb;
+color:#222;
 }
 
 header{
-background:#2a7cff;
+background:#1f2937;
 color:white;
-padding:20px;
+padding:20px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+font-size:20px;
+margin:0;
+}
+
+nav a{
+color:#ddd;
+margin-left:20px;
+text-decoration:none;
+font-size:14px;
+}
+
+nav a:hover{color:white}
+
+.hero{
+padding:60px 20px;
 text-align:center;
 }
 
+.hero h2{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#555;
+}
+
 .container{
-max-width:900px;
+max-width:1100px;
 margin:auto;
 padding:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
 }
 
 .tool{
 background:white;
 padding:20px;
-margin-bottom:20px;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,0.08);
+border-radius:10px;
+box-shadow:0 4px 14px rgba(0,0,0,0.06);
+}
+
+.tool h3{
+margin-top:0;
+font-size:18px;
 }
 
 input{
-padding:8px;
-margin:5px;
+width:100%;
+padding:10px;
+margin-top:6px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:6px;
 }
 
 button{
-padding:8px 14px;
-background:#2a7cff;
-color:white;
+background:#2563eb;
 border:none;
-border-radius:4px;
+color:white;
+padding:10px;
+border-radius:6px;
 cursor:pointer;
+width:100%;
 }
 
 button:hover{
-background:#1b5fcc;
+background:#1d4ed8;
 }
 
 .result{
-font-weight:bold;
 margin-top:10px;
+font-weight:600;
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#666;
+font-size:14px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-<h1>Student Tools Hub</h1>
-<p>10 Free Online Calculators</p>
+<h1>ToolBox</h1>
+<nav>
+<a href="#tools">Tools</a>
+<a href="#">About</a>
+</nav>
 </header>
 
-<div class="container">
+<section class="hero">
+<h2>Free Online Calculators</h2>
+<p>Simple tools for students, developers and everyday calculations</p>
+</section>
+
+<div class="container" id="tools">
+
+<div class="grid">
 
 <!-- Percentage -->
 <div class="tool">
 <h3>Percentage Calculator</h3>
-<input id="p1" placeholder="Percent">
-<input id="n1" placeholder="Number">
+<input id="p" placeholder="Percent">
+<input id="n" placeholder="Number">
 <button onclick="percent()">Calculate</button>
 <div class="result" id="r1"></div>
 </div>
@@ -87,7 +151,7 @@ margin-top:10px;
 <!-- Age -->
 <div class="tool">
 <h3>Age Calculator</h3>
-<input id="birth" type="date">
+<input type="date" id="birth">
 <button onclick="age()">Calculate</button>
 <div class="result" id="r2"></div>
 </div>
@@ -95,20 +159,10 @@ margin-top:10px;
 <!-- BMI -->
 <div class="tool">
 <h3>BMI Calculator</h3>
-<input id="weight" placeholder="Weight kg">
-<input id="height" placeholder="Height meters">
+<input id="w" placeholder="Weight kg">
+<input id="h" placeholder="Height meters">
 <button onclick="bmi()">Calculate</button>
 <div class="result" id="r3"></div>
-</div>
-
-<!-- Simple Interest -->
-<div class="tool">
-<h3>Simple Interest</h3>
-<input id="p" placeholder="Principal">
-<input id="r" placeholder="Rate %">
-<input id="t" placeholder="Time years">
-<button onclick="si()">Calculate</button>
-<div class="result" id="r4"></div>
 </div>
 
 <!-- Discount -->
@@ -117,28 +171,38 @@ margin-top:10px;
 <input id="price" placeholder="Original Price">
 <input id="disc" placeholder="Discount %">
 <button onclick="discount()">Calculate</button>
-<div class="result" id="r5"></div>
+<div class="result" id="r4"></div>
 </div>
 
-<!-- cm to inch -->
+<!-- Interest -->
 <div class="tool">
-<h3>CM to Inch Converter</h3>
-<input id="cm">
-<button onclick="cm()">Convert</button>
-<div class="result" id="r6"></div>
+<h3>Simple Interest</h3>
+<input id="sp" placeholder="Principal">
+<input id="sr" placeholder="Rate %">
+<input id="st" placeholder="Time years">
+<button onclick="si()">Calculate</button>
+<div class="result" id="r5"></div>
 </div>
 
 <!-- Temperature -->
 <div class="tool">
-<h3>Celsius to Fahrenheit</h3>
+<h3>Celsius → Fahrenheit</h3>
 <input id="c">
 <button onclick="temp()">Convert</button>
+<div class="result" id="r6"></div>
+</div>
+
+<!-- CM -->
+<div class="tool">
+<h3>CM → Inch</h3>
+<input id="cm">
+<button onclick="cm()">Convert</button>
 <div class="result" id="r7"></div>
 </div>
 
 <!-- Binary -->
 <div class="tool">
-<h3>Binary to Decimal</h3>
+<h3>Binary → Decimal</h3>
 <input id="bin">
 <button onclick="binary()">Convert</button>
 <div class="result" id="r8"></div>
@@ -160,63 +224,67 @@ margin-top:10px;
 </div>
 
 </div>
+</div>
+
+<footer>
+© 2026 ToolBox – Free Online Tools
+</footer>
 
 <script>
 
 function percent(){
-let p=document.getElementById("p1").value
-let n=document.getElementById("n1").value
-document.getElementById("r1").innerHTML=(p/100)*n
+let p=document.getElementById("p").value
+let n=document.getElementById("n").value
+document.getElementById("r1").innerText=(p/100)*n
 }
 
 function age(){
 let b=new Date(document.getElementById("birth").value)
 let t=new Date()
-let a=t.getFullYear()-b.getFullYear()
-document.getElementById("r2").innerHTML="Age: "+a
+document.getElementById("r2").innerText=t.getFullYear()-b.getFullYear()+" years"
 }
 
 function bmi(){
-let w=document.getElementById("weight").value
-let h=document.getElementById("height").value
-document.getElementById("r3").innerHTML=w/(h*h)
-}
-
-function si(){
-let p=document.getElementById("p").value
-let r=document.getElementById("r").value
-let t=document.getElementById("t").value
-document.getElementById("r4").innerHTML=(p*r*t)/100
+let w=document.getElementById("w").value
+let h=document.getElementById("h").value
+document.getElementById("r3").innerText=(w/(h*h)).toFixed(2)
 }
 
 function discount(){
-let price=document.getElementById("price").value
+let p=document.getElementById("price").value
 let d=document.getElementById("disc").value
-document.getElementById("r5").innerHTML=price-(price*d/100)
+document.getElementById("r4").innerText=p-(p*d/100)
 }
 
-function cm(){
-let c=document.getElementById("cm").value
-document.getElementById("r6").innerHTML=c/2.54+" inch"
+function si(){
+let p=document.getElementById("sp").value
+let r=document.getElementById("sr").value
+let t=document.getElementById("st").value
+document.getElementById("r5").innerText=(p*r*t)/100
 }
 
 function temp(){
 let c=document.getElementById("c").value
-document.getElementById("r7").innerHTML=(c*9/5)+32+" °F"
+document.getElementById("r6").innerText=(c*9/5)+32+" °F"
+}
+
+function cm(){
+let c=document.getElementById("cm").value
+document.getElementById("r7").innerText=c/2.54+" inch"
 }
 
 function binary(){
 let b=document.getElementById("bin").value
-document.getElementById("r8").innerHTML=parseInt(b,2)
+document.getElementById("r8").innerText=parseInt(b,2)
 }
 
 function square(){
 let s=document.getElementById("sq").value
-document.getElementById("r9").innerHTML=s*s
+document.getElementById("r9").innerText=s*s
 }
 
 function rand(){
-document.getElementById("r10").innerHTML=Math.floor(Math.random()*100)
+document.getElementById("r10").innerText=Math.floor(Math.random()*100)
 }
 
 </script>
